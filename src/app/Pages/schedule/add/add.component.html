@@ -1,0 +1,161 @@
+<div class="add-schedule-page">
+  <div class="header-section">Add Schedule</div>
+  <div class="add-form-section">
+    <form [formGroup]="scheduleInputForm" (ngSubmit)="onSubmit()" novalidate>
+      <mat-form-field class="width-full" appearance="outline">
+        <mat-label>Schedule Name</mat-label>
+        <input name="schedule-name" formControlName="scheduleName" matInput />
+        @if (sForm.scheduleName.hasError('required')) {
+        <mat-error>Schedule name is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="width-full" appearance="outline">
+        <mat-label>Schedule Description</mat-label>
+        <input matInput name="schedule-desc" formControlName="scheduleDesc" />
+      </mat-form-field>
+      <div style="display: flex; gap: 16px">
+        <mat-form-field class="width-full" appearance="outline">
+          <mat-label>Location</mat-label>
+          <mat-select name="schedule-location" formControlName="location">
+            @for (location of locationsData; track location) {
+            <mat-option [value]="location.id">{{ location.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="width-full" appearance="outline">
+          <mat-label>Physicians</mat-label>
+          <mat-select name="schedule-physician" formControlName="physician">
+            @for (physician of physiciansData; track physician) {
+            <mat-option [value]="physician.id">{{ physician.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div style="display: flex; gap: 16px">
+        <mat-form-field class="width-full" appearance="outline">
+          <mat-label>Booking Intervals</mat-label>
+          <mat-select name="schedule-interval" formControlName="booingInterval">
+            @for (interval of interValData; track interval) {
+            <mat-option [value]="interval.time">{{
+              interval.label
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="width-full" appearance="outline">
+          <mat-label>Maximum Booking Slots</mat-label>
+          <input
+            matInput
+            name="schedule-max-book-slot"
+            formControlName="maxBookingSlot"
+          />
+          <mat-hint align="end">Slot:choose 1 to 20,Min 1,Max 20.</mat-hint>
+          @if (sForm.maxBookingSlot.hasError('required')) {
+          <mat-error>Maximum booking slots is required.</mat-error>
+          } @if (sForm.maxBookingSlot.hasError('pattern')) {
+          <mat-error
+            >Maximum booking slots value is allow only number.</mat-error
+          >
+          } @if (sForm.maxBookingSlot.hasError('min')) {
+          <mat-error>Maximum booking slots value is allow minimum 1.</mat-error>
+          } @if (sForm.maxBookingSlot.hasError('max')) {
+          <mat-error
+            >Maximum booking slots value is allow maximum 20.</mat-error
+          >
+          }
+        </mat-form-field>
+      </div>
+      <div style="display: flex; gap: 16px">
+        <mat-form-field class="width-full" appearance="outline">
+          <mat-label>Start Time</mat-label>
+          <input
+            matInput
+            [ngxMatTimepicker]="pickerA"
+            name="schedule-start-time"
+            formControlName="startTime"
+          />
+          <!-- <mat-icon matSuffix>watch_later</mat-icon> -->
+          <ngx-mat-timepicker-toggle
+            matIconSuffix
+            [for]="pickerA"
+          ></ngx-mat-timepicker-toggle>
+          <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+        </mat-form-field>
+        <mat-form-field class="width-full" appearance="outline">
+          <mat-label>End Time</mat-label>
+          <input
+            matInput
+            [ngxMatTimepicker]="pickerB"
+            name="schedule-end-time"
+            formControlName="endTime"
+          />
+          <!-- <mat-icon matSuffix>watch_later</mat-icon> -->
+          <ngx-mat-timepicker-toggle
+            matIconSuffix
+            [for]="pickerB"
+          ></ngx-mat-timepicker-toggle>
+          <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+        </mat-form-field>
+      </div>
+      <div style="display: flex; gap: 16px; margin-bottom: 22px">
+        <div class="width-full checkbox-input">
+          <span class="">
+            <mat-checkbox
+              class="example-margin"
+              color="primary"
+              labelPosition="before"
+              name="disable-book-slot"
+              formControlName="disableOpenSlot"
+            >
+              Disabled Booking Open Slot
+            </mat-checkbox>
+          </span>
+        </div>
+        <div class="width-full"></div>
+      </div>
+      <div style="display: flex; gap: 16px">
+        <div class="width-full checkbox-input">
+          <span class="">
+            <mat-checkbox
+              class="example-margin"
+              color="primary"
+              labelPosition="before"
+              name="schedule-end-date"
+              formControlName="scheduleEndDate"
+            >
+              Schedule End Date
+            </mat-checkbox>
+          </span>
+        </div>
+        <div class="width-full">
+          <mat-form-field
+            class="width-full no-line"
+            subscriptSizing="dynamic"
+            appearance="outline"
+          >
+            <mat-label>To Date</mat-label>
+            <input
+              [matDatepicker]="picker"
+              name="schedule-to-date"
+              formControlName="scheduleToDate"
+              matInput
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-save"
+        [disabled]="!scheduleInputForm.valid"
+      >
+        Save Schedule
+      </button>
+    </form>
+  </div>
+</div>

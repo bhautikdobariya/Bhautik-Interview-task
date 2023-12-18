@@ -1,0 +1,158 @@
+<div class="home-page">
+  <div class="header-section">
+    Schedule List
+    <a color="primary" (click)="goToSchedule()">Go to schedules</a>
+  </div>
+  <div class="body-section">
+    @for (schedule of schedulesData; track schedule.name) {
+    <div class="single-schedule-card">
+      <h4 class="schedule-title">
+        {{ schedule.scheduleName }}
+        {{
+          schedule.totalAppoitment > 0
+            ? "(" + schedule.totalAppoitment + ")"
+            : ""
+        }}
+      </h4>
+      <div class="schedule-card-body">
+        @for (timeSlot of schedule.timeSlotData; track timeSlot.timeLabel) {
+        <div class="time-slot-list">
+          <div class="time-slot">{{ timeSlot.timeLabel }}</div>
+          <div
+            class="schedule-list"
+            [style.background-color]="schedule.backgroundColor"
+          >
+            @for (appointData of timeSlot.data; track appointData) {
+            <div
+              class="single-schedule"
+              [ngClass]="{ 'active-schedule': appointData.isEvent == true }"
+            >
+              @if(appointData.isEvent){
+              <div
+                class="appoint-detail"
+                [style.background-color]="appointData.backColor"
+              >
+                <h4 class="appoint-title">{{ appointData?.userName }}</h4>
+                <p class="appoint-description">
+                  {{ appointData?.description }}
+                </p>
+              </div>
+              }@else {
+              <div
+                class="blank-appoint"
+                (click)="doBookAppointment()"
+                [style.background-color]="schedule.hoverBackColor"
+              >
+                <div class="blank-appoint-inner">
+                  <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                  <p class="click-text">Click here to book appointment</p>
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </div>
+        </div>
+        } @if(false){
+        <div class="time-slot-list">
+          <div class="time-slot">5:30 PM</div>
+          <div class="schedule-list">
+            <div class="single-schedule active-schedule">
+              <!-- <div class="blank-appoint-card">
+              <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+              <p class="click-text">Click here to book appointment</p>
+            </div> -->
+              <div class="appoint-detail">
+                <h4 class="appoint-title">Manoj Ghediya</h4>
+                <p class="appoint-description">Diabetes, Blood presure</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-slot-list">
+          <div class="time-slot">5:30 PM</div>
+          <div class="schedule-list">
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-slot-list">
+          <div class="time-slot">5:30 PM</div>
+          <div class="schedule-list">
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="time-slot-list">
+          <div class="time-slot">5:30 PM</div>
+          <div class="schedule-list">
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+            <div class="single-schedule">
+              <div class="blank-appoint-card">
+                <mat-icon class="add-icon" fontIcon="add_box"></mat-icon>
+                <p class="click-text">Click here to book appointment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    } @empty { Empty list of users }
+  </div>
+</div>

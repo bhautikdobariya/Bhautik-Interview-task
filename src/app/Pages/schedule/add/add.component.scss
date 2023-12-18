@@ -1,0 +1,31 @@
+.add-schedule-page {
+  padding: 10px 20px;
+  max-width: 70%;
+  margin: auto;
+  .header-section {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 0px;
+    border-bottom: 1px solid #dedede;
+  }
+  .add-form-section {
+    padding-top: 20px;
+    .width-full {
+      width: 100%;
+    }
+    .checkbox-input {
+      border: 1px solid gray;
+      border-radius: 4px;
+      padding: 7px 16px;
+      width: 93%;
+      max-height: 56px;
+      &:hover {
+        border-color: #000;
+      }
+    }
+    .btn-save {
+      margin: 30px auto 10px;
+      display: block;
+    }
+  }
+}

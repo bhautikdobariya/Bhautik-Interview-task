@@ -1,0 +1,41 @@
+.schedule-list-page {
+  padding: 10px 20px;
+  max-width: 70%;
+  margin: auto;
+  .header-section {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 0px;
+    border-bottom: 1px solid #dedede;
+    a {
+      float: right;
+      font-weight: 400;
+      cursor: pointer;
+      color: #3f51b5;
+      text-decoration: underline;
+    }
+  }
+  .list-section {
+    padding-top: 20px;
+    .list-table {
+      width: 100%;
+      tr {
+        th {
+          text-align: left;
+        }
+        td {
+          a {
+            cursor: pointer;
+            color: #3f51b5;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div class="schedule-list-page">
+  <div class="header-section">
+    Schedule List
+    <a color="primary" (click)="goToAddSchedule()">Add Schedule</a>
+  </div>
+  <div class="list-section">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>#Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Physician</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (schedulesData.length > 0) { @for (schedule of schedulesData; track
+        schedule;let index = $index) {
+        <tr>
+          <td>{{ index + 1 }}</td>
+          <td>{{ schedule?.scheduleName }}</td>
+          <td>{{ schedule?.scheduleDesc }}</td>
+          <td>{{ schedule?.locationData?.name }}</td>
+          <td>{{ schedule?.physicianData?.name }}</td>
+          <td><a (click)="doDeleteSchedule(index)">Delete</a></td>
+        </tr>
+        } } @else{
+        <tr>
+          <td colspan="6" align="center">No data found</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
